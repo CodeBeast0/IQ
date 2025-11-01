@@ -6,12 +6,17 @@ export const inngest = new Inngest({ id: "talent-iq" });
 
 // Create new Clerk user
 const syncUser = inngest.createFunction(
-  { id: "sync-user" },
+  {
+    id: "talent-iq",
+    eventKey: process.env.INNGEST_EVENT_KEY,
+    signingKey: process.env.INNGEST_SIGNING_KEY,
+  },
   { event: "user.created" },
   async ({ event }) => {
     await connectDB();
 
-    const { id, email_addresses, first_name, last_name, image_url } = event.data;
+    const { id, email_addresses, first_name, last_name, image_url } =
+      event.data;
 
     const newUser = {
       clerkId: id,

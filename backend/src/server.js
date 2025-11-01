@@ -9,7 +9,7 @@ const app = express();
 
 //middleware
 app.use(express.json());
-app.use(express.cors({ origin: ENV.CLIENT_URL, credential: true })); //credential:true meaning?? => server allows a browser to include cookies on request
+app.use(cors({ origin: ENV.CLIENT_URL, credential: true })); //credential:true meaning?? => server allows a browser to include cookies on request
 
 app.use("/api/inngest", serve({ client: inngest, functions }));
 
